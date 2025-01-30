@@ -17,15 +17,6 @@ class SplashView: UIView {
         return image
     }()
 
-    private let titleLogoLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Remaider"
-        label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setupUI()
@@ -36,25 +27,19 @@ class SplashView: UIView {
     }
 
     private func setupUI() {
-        self.backgroundColor = .systemRed
 
         self.addSubview(logoImagemView)
-        self.addSubview(titleLogoLabel)
 
         setupConstraints()
     }
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            titleLogoLabel.centerXAnchor.constraint(
-                equalTo: self.centerXAnchor, constant: 24),
-            titleLogoLabel.centerYAnchor.constraint(
-                equalTo: self.centerYAnchor, constant: -24),
+            logoImagemView.centerXAnchor.constraint(
+                equalTo: self.centerXAnchor),
+            logoImagemView.centerYAnchor.constraint(
+                equalTo: self.centerYAnchor),
 
-            logoImagemView.trailingAnchor.constraint(
-                equalTo: titleLogoLabel.leadingAnchor, constant: -8),
-            logoImagemView.bottomAnchor.constraint(
-                equalTo: titleLogoLabel.bottomAnchor),
         ])
 
     }
