@@ -63,6 +63,7 @@ class LogginBottomSheetView: UIView {
         self.backgroundColor = .white
         self.layer.cornerRadius = Metrics.small
 
+        self.addSubview(hadleArea)
         self.addSubview(titleLabel)
         self.addSubview(emailTextField)
         self.addSubview(passwordTextField)
