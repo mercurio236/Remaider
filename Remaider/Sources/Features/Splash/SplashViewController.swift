@@ -13,6 +13,8 @@ class SplashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //ciclo de decisão se vai para login ou para menu
         setup()
     }
     
