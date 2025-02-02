@@ -8,6 +8,8 @@
 import UIKit
 
 class LogginBottomSheetView: UIView {
+    //weak é uma variavel fraca, porque no momento que saimos dessa classe, a gente quer destruir ela da memoria, não queremos que delegate fique pessistindo
+    public weak var delegate: LoginBottomSheetDelegate?
 
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -63,6 +65,7 @@ class LogginBottomSheetView: UIView {
         button.layer.cornerRadius = Metrics.medium
         button.tintColor = .white
         button.titleLabel?.font = Typography.subheading
+        button.addTarget(self, action: #selector(loginButtonDidTapead), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -134,6 +137,13 @@ class LogginBottomSheetView: UIView {
             loginButton.heightAnchor.constraint(equalToConstant: Metrics.buttonSize),
         ])
 
+    }
+    
+    @objc
+    private func loginButtonDidTapead() {
+        let password = passwordTextField.text ?? ""
+        let user = emailTextField.text ?? ""
+        delegate?.sendLoginData(user: user, password: password)
     }
 
 }
