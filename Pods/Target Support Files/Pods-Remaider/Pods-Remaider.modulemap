@@ -1,0 +1,6 @@
+framework module Pods_Remaider {
+  umbrella header "Pods-Remaider-umbrella.h"
+
+  export *
+  module * { export * }
+}
