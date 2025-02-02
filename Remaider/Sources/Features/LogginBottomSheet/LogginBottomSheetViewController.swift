@@ -9,6 +9,7 @@ import UIKit
 
 class LogginBottomSheetViewController: UIViewController {
     let loginView = LogginBottomSheetView()
+    let viewModel = LoginBottomSheetViewModel()
     var handleAreaHeight: CGFloat = 50.0
 
     override func viewDidLoad() {
@@ -72,6 +73,6 @@ class LogginBottomSheetViewController: UIViewController {
 
 extension LogginBottomSheetViewController: LoginBottomSheetDelegate{
     func sendLoginData(user: String, password: String) {
-        print(user, password)
+        viewModel.doAuth(userNameLogin: user, password: password)
     }
 }
