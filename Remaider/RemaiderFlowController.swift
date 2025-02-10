@@ -11,7 +11,6 @@ import UIKit
 class RemaiderFlowController{
     //MARK: - Properties
     private var navigationController: UINavigationController?
-    //MARK: - Splash
     //MARK: - init
     public init(){}
     
@@ -21,7 +20,7 @@ class RemaiderFlowController{
     
     //MARK: - startFlow
     func start() -> UINavigationController?{
-        let startViewController = SplashViewController()
+        let startViewController = SplashViewController(flowDelegate: self)
         self.navigationController = UINavigationController(rootViewController: startViewController)
         return navigationController
         
@@ -35,6 +34,21 @@ extension RemaiderFlowController: LoginBottomSheetFlowDelegate{
         let viewController = UIViewController()
         viewController.view.backgroundColor = .red
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    
+}
+
+//MARK: - Splash
+extension RemaiderFlowController: SplashFlowDelegate{
+    func openLoginBottomSheet() {
+        let loginBottomSheet = LogginBottomSheetViewController(flowDelegate: self)
+        loginBottomSheet.modalPresentationStyle = .overCurrentContext
+        loginBottomSheet.modalTransitionStyle = .crossDissolve
+
+        navigationController?.present(loginBottomSheet, animated: false) {
+            loginBottomSheet.animateShow()
+        }
     }
     
     
