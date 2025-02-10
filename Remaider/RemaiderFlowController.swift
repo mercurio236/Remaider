@@ -12,7 +12,6 @@ class RemaiderFlowController{
     //MARK: - Properties
     private var navigationController: UINavigationController?
     //MARK: - Splash
-    //MARK: - Login
     //MARK: - init
     public init(){}
     
@@ -27,5 +26,16 @@ class RemaiderFlowController{
         return navigationController
         
     }
+}
+
+//MARK: - Login
+extension RemaiderFlowController: LoginBottomSheetFlowDelegate{
+    func navigateToHome() {
+        self.navigationController?.dismiss(animated: true)
+        let viewController = UIViewController()
+        viewController.view.backgroundColor = .red
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     
 }
