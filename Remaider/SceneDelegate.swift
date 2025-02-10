@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var flowController: RemaiderFlowController?
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -17,11 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
+        flowController = RemaiderFlowController()
+        let rootViewController = flowController?.start()
         
-        
-        let navigation = UINavigationController(rootViewController: SplashViewController())
-        
-        window.rootViewController = navigation
+        window.rootViewController = rootViewController
         self.window = window
         window.makeKeyAndVisible()
         
