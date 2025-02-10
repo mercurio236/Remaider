@@ -8,6 +8,7 @@
 import UIKit
 
 class LogginBottomSheetViewController: UIViewController {
+    var mainNavigation:UINavigationController?
     let loginView = LogginBottomSheetView()
     let viewModel = LoginBottomSheetViewModel()
     var handleAreaHeight: CGFloat = 50.0
@@ -47,7 +48,10 @@ class LogginBottomSheetViewController: UIViewController {
     private func bindViewModel() {
         viewModel.successResult = {
             [weak self] in
-            print("chegou na view controller")
+            let viewController = UIViewController()
+            viewController.view.backgroundColor = .red
+            self?.dismiss(animated: false)
+            self?.mainNavigation?.pushViewController(viewController, animated: true)
         }
     }
 
