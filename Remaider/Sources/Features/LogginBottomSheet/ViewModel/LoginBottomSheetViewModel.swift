@@ -9,14 +9,15 @@ import Foundation
 import Firebase
 
 class LoginBottomSheetViewModel {
+    var successResult: (() -> Void)? //isso é uma clousures
+    
     func doAuth(userNameLogin: String, password: String){
         Auth.auth().signIn(withEmail: userNameLogin, password: password) { [weak self] AuthDataResult, error in
-            
             if let error = error {
                 print("Error: \(error)")
                 return
             }else{
-                print(AuthDataResult?.user ?? "User not found")
+                self?.successResult?()
             }
             
         }

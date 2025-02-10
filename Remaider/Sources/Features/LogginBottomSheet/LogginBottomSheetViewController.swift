@@ -18,6 +18,7 @@ class LogginBottomSheetViewController: UIViewController {
         loginView.delegate = self
         setupUI()
         setupGesture()
+        bindViewModel()
     }
 
     private func setupUI() {
@@ -41,6 +42,13 @@ class LogginBottomSheetViewController: UIViewController {
 
         heightConstraint.isActive = true
 
+    }
+    
+    private func bindViewModel() {
+        viewModel.successResult = {
+            [weak self] in
+            print("chegou na view controller")
+        }
     }
 
     private func setupGesture() {
