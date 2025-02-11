@@ -9,11 +9,12 @@ import UIKit
 
 class SplashViewController: UIViewController {
 
-    let contentView = SplashView()
+    let contentView: SplashView
     public weak var flowDelegate: SplashFlowDelegate?
     
-    init(flowDelegate: SplashFlowDelegate){
+    init(contentView: SplashView, flowDelegate: SplashFlowDelegate){
         self.flowDelegate = flowDelegate
+        self.contentView = contentView
         super.init(nibName: nil, bundle: nil)
     }
     
