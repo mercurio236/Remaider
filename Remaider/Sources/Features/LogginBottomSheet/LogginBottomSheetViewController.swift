@@ -60,8 +60,25 @@ class LogginBottomSheetViewController: UIViewController {
         viewModel.successResult = {
             [weak self] usernameLogin in
             self?.presentSaveLoginAlert(email: usernameLogin)
-            //self?.flowDelegate?.navigateToHome()
         }
+        
+        viewModel.errorResult = { [weak self] errorMessage in
+            self?.presentErrorAlert(message: errorMessage)
+        }
+    }
+    
+    private func presentErrorAlert(message: String) {
+        let alertController = UIAlertController(
+            title: "Erro ao logar",
+            message: message,
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(
+            title: "Ok", style: .default)
+        
+        alertController.addAction(okAction)
+        
+        self.present(alertController, animated: true)
     }
     
     private func presentSaveLoginAlert(email: String) {
