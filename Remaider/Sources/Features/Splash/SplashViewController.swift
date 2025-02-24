@@ -27,7 +27,8 @@ class SplashViewController: UIViewController {
         setupGesture()
 
         //ciclo de decisão se vai para login ou para menu
-        decideNavigationFlow()
+        //decideNavigationFlow()
+        startBreathingAnimation()
         setup()
     }
     
@@ -68,7 +69,25 @@ class SplashViewController: UIViewController {
 
     @objc
     private func showLoginBottomSheet() {
+        animateLogoUp()
         self.flowDelegate?.openLoginBottomSheet()
 
+    }
+}
+
+//MARK: - Animations
+extension SplashViewController{
+    private func startBreathingAnimation(){
+        UIView.animate(withDuration: 1.5, delay:0.0, animations: {
+            self.contentView.logoImagemView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+        }, completion: { _ in
+            self.decideNavigationFlow()
+        })
+    }
+    
+    private func animateLogoUp(){
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseInOut], animations:{
+            self.contentView.logoImagemView.transform = self.contentView.logoImagemView.transform.translatedBy(x: 0, y: -150)
+        } )
     }
 }
