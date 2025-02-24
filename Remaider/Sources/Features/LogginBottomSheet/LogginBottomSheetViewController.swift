@@ -58,9 +58,34 @@ class LogginBottomSheetViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.successResult = {
-            [weak self] in
-            self?.flowDelegate?.navigateToHome()
+            [weak self] usernameLogin in
+            self?.presentSaveLoginAlert(email: usernameLogin)
+            //self?.flowDelegate?.navigateToHome()
         }
+    }
+    
+    private func presentSaveLoginAlert(email: String) {
+        let alertController = UIAlertController(
+            title: "Salvar Acesso",
+            message: "Deseja se manter contectado",
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(
+            title: "Salvar", style: .default){
+                _ in
+                let user = User(email: email, isUserSaved: true)
+                UserDefaultManager.saveUser(user: user)
+                self.flowDelegate?.navigateToHome()
+            }
+        let cancelAction = UIAlertAction(
+            title: "Não", style: .cancel){ _ in
+                self.flowDelegate?.navigateToHome()
+            }
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true)
+        
+        
     }
 
     private func setupGesture() {

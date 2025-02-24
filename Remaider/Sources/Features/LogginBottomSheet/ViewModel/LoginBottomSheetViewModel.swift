@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 
 class LoginBottomSheetViewModel {
-    var successResult: (() -> Void)? //isso é uma clousures
+    var successResult: ((String) -> Void)? //isso é uma clousures
     
     func doAuth(userNameLogin: String, password: String){
         Auth.auth().signIn(withEmail: userNameLogin, password: password) { [weak self] AuthDataResult, error in
@@ -17,7 +17,7 @@ class LoginBottomSheetViewModel {
                 print("Error: \(error)")
                 return
             }else{
-                self?.successResult?()
+                self?.successResult?(userNameLogin)
             }
             
         }
