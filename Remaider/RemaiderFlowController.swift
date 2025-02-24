@@ -52,6 +52,13 @@ extension RemaiderFlowController: SplashFlowDelegate{
         navigationController?.present(loginBottomSheet, animated: false) {
             loginBottomSheet.animateShow()
         }
+        
+        func navigateToHome() {
+            self.navigationController?.dismiss(animated: true)
+            let viewController = UIViewController()
+            viewController.view.backgroundColor = .red
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
     
     
